@@ -1,0 +1,14 @@
+/* ⚠️ NO modificar HTML ni JavaScript
+   ⚠️ Corregir solo CSS
+   ⚠️ Mantener diseño y responsive actual */
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #f59e0b;
+    --light-color: #f8fafc;
+    --dark-color: #1e293b;
+    --gray-color: #64748b;
+    --success-color: #10b981;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

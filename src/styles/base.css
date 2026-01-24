@@ -1,0 +1,22 @@
+
+/* ⚠️ NO modificar HTML ni JavaScript
+   ⚠️ Corregir solo CSS
+   ⚠️ Mantener diseño y responsive actual */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f5f9;
+    color: var(--dark-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}

@@ -1,0 +1,195 @@
+/* ⚠️ NO modificar HTML ni JavaScript
+   ⚠️ Corregir solo CSS
+   ⚠️ Mantener diseño y responsive actual */
+
+@import './variables.css';
+@import './base.css';
+@import './components.css';
+
+/* main.css importa y organiza los módulos de estilos */
+
+/* Loader styles */
+.site-loader {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #131212;
+	z-index: 9999;
+	transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.site-loader .loader-inner {
+	text-align: center;
+}
+.site-loader .loader-bars {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+.site-loader .loader-bars span {
+	display: inline-block;
+	width: 10px;
+	height: 26px;
+	background: #2b6cb0;
+	border-radius: 4px;
+	transform-origin: bottom center;
+	animation: bar 0.9s ease-in-out infinite;
+}
+.site-loader .loader-bars span:nth-child(1) { animation-delay: 0s; }
+.site-loader .loader-bars span:nth-child(2) { animation-delay: 0.15s; }
+.site-loader .loader-bars span:nth-child(3) { animation-delay: 0.3s; }
+.site-loader .loader-bars span:nth-child(4) { animation-delay: 0.45s; }
+.site-loader .loader-text {
+	margin: 0;
+	color: #333;
+	font-weight: 700;
+	text-transform: lowercase;
+}
+@keyframes bar {
+	0%, 80%, 100% { transform: scaleY(0.6); opacity: 0.7; }
+	40% { transform: scaleY(1.25); opacity: 1; }
+}
+.site-loader.loader-hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+/* Hero banner slides */
+.hero-banner {
+	position: relative;
+	overflow: hidden;
+	margin: 20px 0;
+	border-radius: 8px;
+}
+.hero-banner-inner {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.hero-banner .slides {
+	position: relative;
+	width: 100%;
+	height: 320px;
+}
+.hero-banner .slides .slide {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 0.8s ease;
+}
+.hero-banner .slides .slide.active {
+	opacity: 1;
+}
+.hero-banner .hero-content {
+	position: absolute;
+	left: 24px;
+	bottom: 24px;
+	z-index: 3;
+	color: #fff;
+	text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+@media (max-width: 768px) {
+	.hero-banner .slides {
+		height: 200px;
+	}
+	.hero-banner .hero-content {
+		left: 14px;
+		bottom: 12px;
+	}
+}
+
+/* Right-side nav toggle */
+.right-nav-toggle {
+	position: fixed;
+	right: 16px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1200;
+	background: #2b6cb0;
+	color: #fff;
+	border: none;
+	padding: 10px 12px;
+	border-radius: 8px 0 0 8px;
+	cursor: pointer;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.right-nav {
+	position: fixed;
+	right: 64px; /* leave space for the icon button at right:16px */
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1199;
+	background: transparent;
+	pointer-events: none;
+}
+.right-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	transition: transform 0.28s ease, opacity 0.28s ease;
+	transform: translateX(12px);
+	opacity: 0;
+	pointer-events: none;
+}
+.right-nav.open ul {
+	transform: translateX(0);
+	opacity: 1;
+	pointer-events: auto;
+}
+.right-nav-item {
+	background: rgba(255,255,255,0.95);
+	border: 1px solid #e6e6e6;
+	padding: 10px 14px;
+	border-radius: 6px 0 0 6px;
+	cursor: pointer;
+	min-width: 160px;
+	text-align: left;
+}
+.right-nav-item:hover { background:#f3f7ff; }
+
+/* Side panels */
+.side-panel {
+	position: fixed;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%) translateX(110%);
+	width: 320px;
+	max-width: calc(100% - 40px);
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+	padding: 16px;
+	z-index: 1300;
+	transition: transform 0.35s ease, opacity 0.25s ease;
+	opacity: 0;
+}
+.side-panel.open {
+	transform: translateY(-50%) translateX(0);
+	opacity: 1;
+}
+.side-panel h3 { margin-top:0; }
+.panel-close {
+	position: absolute;
+	left: 10px;
+	top: 8px;
+	background: transparent;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+/* Small responsive tweaks */
+@media (max-width: 600px) {
+	.right-nav-toggle { right: 10px; }
+	.side-panel { width: 92%; right: 4%; }
+}

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Online - 40 Productos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="src/styles/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v6.4.0/css/all.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="site-loader" class="site-loader">
+      <div class="loader-inner">
+        <div class="loader-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p class="loader-text">cargando....</p>
+     </div>
+    </div>
+    <!--Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-store"></i>
+            <span>Mi Tienda Online</span>
+          </div>
+          <div class="cart-icon" id="cartIcon">
+            <i class="fas fa-shopping-cart"></i>
+            <div class="cart-count" id="cartCount">0</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Right-side toggle menu -->
+    <button
+      class="right-nav-toggle"
+      id="rightNavToggle"
+      aria-label="Abrir menú"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav class="right-nav" id="rightNav" aria-hidden="true">
+      <ul>
+        <li>
+          <button class="right-nav-item" data-panel="panel-sobre">
+            Sobre nosotros
+          </button>
+        </li>
+        <li>
+          <button class="right-nav-item" data-panel="panel-servicios">
+            Servicios
+          </button>
+        </li>
+        <li>
+          <button class="right-nav-item" data-panel="panel-contacto">
+            Contacto
+          </button>
+        </li>
+        <li>
+          <button class="right-nav-item" data-panel="panel-ayuda">Ayuda</button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container">
+      <!-- Banner -->
+      <section class="hero-banner">
+        <div class="hero-banner-inner">
+          <div class="slides">
+            <img
+              src="public/images/products/banner1.webp"
+              alt="Banner 1"
+              class="slide active"
+            />
+            <img
+              src="public/images/products/banner2.webp"
+              alt="Banner 2"
+              class="slide"
+            />
+            <img
+              src="public/images/products/banner3.webp"
+              alt="Banner 3"
+              class="slide"
+            />
+          </div>
+          <div class="hero-content">
+            <h1>Bienvenido — Ofertas destacadas</h1>
+            <p>Descubre nuestros productos más populares.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="main-content">
+        <!-- Products section -->
+        <section class="products-section">
+          <h2 class="section-title">Nuestros Productos (40)</h2>
+          <div class="products-grid" id="productsGrid">
+            <!-- Los productos se generarán con JavaScript -->
+          </div>
+        </section>
+
+        <!-- Cart section -->
+        <section class="cart-section">
+          <div class="cart-container">
+            <h2 class="section-title">Tu Carrito</h2>
+            <div class="cart-items" id="cartItems">
+              <div class="empty-cart" id="emptyCart">
+                <i
+                  class="fas fa-shopping-cart"
+                  style="font-size: 2rem; margin-bottom: 10px"
+                ></i>
+                <p>Tu carrito está vacío</p>
+                <p>Agrega productos desde el catálogo</p>
+              </div>
+            </div>
+            <div class="cart-total">
+              <span>Total:</span>
+              <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" disabled>
+              Finalizar Compra
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Checkout modal -->
+    <div class="modal-overlay" id="checkoutModal">
+      <div class="checkout-modal">
+        <div class="modal-header">
+          <h2>Finalizar Pedido</h2>
+          <button class="close-modal" id="closeModal">&times;</button>
+        </div>
+        <p style="margin-bottom: 20px">
+          Por favor, completa tus datos para enviar el pedido por WhatsApp:
+        </p>
+
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label for="customerName">Nombre Completo *</label>
+            <input
+              type="text"
+              id="customerName"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">Número de Teléfono *</label>
+            <input
+              type="tel"
+              id="customerPhone"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="customerAddress">Dirección de Envío *</label>
+            <textarea
+              id="customerAddress"
+              class="form-control"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="customerNotes">Notas adicionales (opcional)</label>
+            <textarea
+              id="customerNotes"
+              class="form-control"
+              rows="2"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-order-btn">
+            <i class="fab fa-whatsapp"></i> Enviar Pedido por WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Product details modal -->
+    <div class="modal-overlay" id="productModal">
+      <div class="product-modal">
+        <div class="modal-header">
+          <h2 id="productModalTitle">Detalles del producto</h2>
+          <button class="close-modal" id="closeProductModal">&times;</button>
+        </div>
+        <div class="product-modal-body">
+          <div class="product-modal-media">
+            <img id="productModalImage" src="" alt="" />
+          </div>
+          <div class="product-modal-info">
+            <p id="productModalCategory" class="muted"></p>
+            <p id="productModalPrice" class="price"></p>
+            <div
+              id="productModalDetails"
+              class="product-modal-details"
+              style="margin-top: 8px; white-space: pre-wrap"
+            ></div>
+            <div style="margin-top: 12px; display: flex; gap: 8px">
+              <button
+                id="closeProductDetails"
+                class="close-modal"
+                style="background: #eee; border-radius: 6px; padding: 8px 12px"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="logo">
+            <i class="fas fa-store"></i>
+            <span>Mi Tienda Online</span>
+          </div>
+          <p>Tu tienda de confianza con los mejores productos</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          <p class="copyright">
+            © 2023 Mi Tienda Online. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Side panels (inline panels that open/close) -->
+    <div class="side-panel" id="panel-sobre" aria-hidden="true">
+      <button class="panel-close" data-panel-close aria-label="Cerrar">
+        &times;
+      </button>
+      <h3>Sobre nosotros</h3>
+      <p>
+        Somos una tienda local dedicada a ofrecer productos de calidad y
+        atención cercana al cliente.
+      </p>
+    </div>
+
+    <div class="side-panel" id="panel-servicios" aria-hidden="true">
+      <button class="panel-close" data-panel-close aria-label="Cerrar">
+        &times;
+      </button>
+      <h3>Servicios</h3>
+      <ul>
+        <li>Envíos a domicilio</li>
+        <li>Garantía y devoluciones</li>
+        <li>Soporte postventa</li>
+      </ul>
+    </div>
+
+    <div class="side-panel" id="panel-contacto" aria-hidden="true">
+      <button class="panel-close" data-panel-close aria-label="Cerrar">
+        &times;
+      </button>
+      <h3>Contacto</h3>
+      <p>Teléfono: +51 912345678</p>
+      <p>Dirección: Calle Falsa 123, Ciudad</p>
+    </div>
+
+    <div class="side-panel" id="panel-ayuda" aria-hidden="true">
+      <button class="panel-close" data-panel-close aria-label="Cerrar">
+        &times;
+      </button>
+      <h3>Ayuda</h3>
+      <p>
+        Ingresa el correo al que deseas que enviemos la información y un mensaje
+        opcional.
+      </p>
+      <div
+        style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px"
+      >
+        <input
+          type="email"
+          id="helpRecipient"
+          placeholder="correo@ejemplo.com"
+        />
+        <textarea
+          id="helpMessage"
+          rows="4"
+          placeholder="Mensaje (opcional)"
+        ></textarea>
+        <div style="display: flex; gap: 8px">
+          <button id="sendHelpBtn">Enviar información</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="src/js/index.js"></script>
+  </body>
+</html>
